@@ -1,0 +1,4 @@
+# See https://git-scm.com/docs/gitignore for detailed pattern documentation.
+
+# Dependencies
+/node_modules
