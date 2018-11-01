@@ -1,6 +1,18 @@
 const should = require('chai').should()
 const puppeteer = require('puppeteer')
 
+const { PercyAgent } = require('@percy/agent')
+const percySnapshot = async function(page, name, options = {}) {
+  await page.addScriptTag({
+    path: require.resolve('@percy/agent/dist/public/percy-agent.js')
+  })
+  await page.evaluate(function(name, options) {
+    const percyAgentClient = new PercyAgent()
+    percyAgentClient.snapshot(name, options)
+  }, name, options)
+
+}
+
 const TEST_URL = "http://localhost:8000"
 
 describe('TodoMVC', function() {
@@ -25,6 +37,7 @@ describe('TodoMVC', function() {
     await page.goto(TEST_URL)
     const mainContainer = await page.$('section.todoapp')
     should.exist(mainContainer)
+    await percySnapshot(page, this.test.fullTitle())
   })
 
   it('With no todos, hides main section', async function() {
