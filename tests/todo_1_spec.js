@@ -5,12 +5,10 @@ const { percySnapshot } = require('@percy/puppeteer')
 const TEST_URL = "http://localhost:8000"
 
 describe('Todos', function() {
-
   let browser = null
   let page = null
 
   beforeEach(async function() {
-    // Create a new Puppeteer browser instace for each test case
     browser = await puppeteer.launch({
       headless: true,
       timeout: 10000,
@@ -19,9 +17,7 @@ describe('Todos', function() {
     page = await browser.newPage()
   })
 
-  afterEach(function() {
-    browser.close()
-  })
+  afterEach(function() { browser.close() })
 
   it('Accepts a new todo', async function() {
     await page.goto(TEST_URL)
