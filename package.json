@@ -1,14 +1,17 @@
 {
   "private": true,
   "scripts": {
-    "test": "percy exec -- ./run_tests.sh"
+    "start": "http-server . -p 8000 &",
+    "stop": "pkill -f http-server",
+    "pretest": "npm start",
+    "test": "mocha tests/todo_$(echo $CIRCLE_NODE_INDEX)_spec.js",
+    "posttest": "npm stop"
   },
   "dependencies": {
     "todomvc-app-css": "^2.0.1",
     "todomvc-common": "^1.0.2"
   },
   "devDependencies": {
-    "@percy/puppeteer": "^1.0.0-beta.3",
     "chai": "^4.2.0",
     "http-server": "^0.11.1",
     "mocha": "^5.2.0",
