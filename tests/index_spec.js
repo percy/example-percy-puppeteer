@@ -2,7 +2,7 @@ const should = require('chai').should()
 const puppeteer = require('puppeteer')
 const { percySnapshot } = require('@percy/puppeteer')
 
-const TEST_URL = "http://localhost:8000"
+const TEST_URL = "http://todomvc.com/examples/vanillajs/"
 
 describe('Index', function() {
 
