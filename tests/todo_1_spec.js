@@ -20,7 +20,6 @@ describe('Todos', function() {
   })
 
   afterEach(function() {
-    // Close the Puppeteer browser instance.
     browser.close()
   })
 
@@ -30,7 +29,7 @@ describe('Todos', function() {
     await page.keyboard.press('Enter')
     const todoCount = await page.evaluate(() => document.querySelectorAll('.todo-list li').length)
     todoCount.should.eq(1)
-    await percySnapshot(page, 'Snapshot with new todo', {widths: [300]})
+    await percySnapshot(page, 'Snapshot with new todo')
   })
 
   it('Lets you check off a todo', async function() {
@@ -40,7 +39,6 @@ describe('Todos', function() {
 
     let itemsLeft = await page.evaluate(() => document.querySelector('.todo-count').textContent)
     itemsLeft.should.eq('1 item left')
-
 
     await page.click('input.toggle')
     itemsLeft = await page.evaluate(() => document.querySelector('.todo-count').textContent)

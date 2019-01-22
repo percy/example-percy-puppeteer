@@ -20,7 +20,6 @@ describe('Index', function() {
   })
 
   afterEach(function() {
-    // Close the Puppeteer browser instance.
     browser.close()
   })
 
