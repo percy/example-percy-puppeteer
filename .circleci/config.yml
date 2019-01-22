@@ -27,14 +27,14 @@ jobs:
           at: .
       - restore_cache:
           keys:
-            - v1-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - v1-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
             - v1-deps-{{ .Branch }}-
             - v1-deps-
       - run:
-          name: npm install
-          command: sudo npm install -g @percy/agent && npm install --non-interactive
+          name: yarn install
+          command: yarn global add @percy/agent && yarn install --non-interactive
       - save_cache:
-          key: v1-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          key: v1-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - ./node_modules
       - persist_to_workspace:
@@ -51,7 +51,7 @@ jobs:
       - run: echo 'export PATH=~/example-percy-puppeteer/node_modules/.bin:$PATH' >> $BASH_ENV
       - run:
           name: Run Tests
-          command: npm run test:parallel:${CIRCLE_NODE_INDEX}
+          command: yarn run test:parallel:${CIRCLE_NODE_INDEX}
 
 workflows:
   test_and_deploy:
