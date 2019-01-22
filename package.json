@@ -4,7 +4,7 @@
     "start": "http-server . -p 8000 &",
     "stop": "pkill -f http-server",
     "avoid-pretest": "npm start",
-    "test": "LOG_LEVEL=debug percy exec -- mocha --timeout 10000 tests/todo_spec.js",
+    "test": "LOG_LEVEL=debug percy exec -- mocha --timeout 10000 tests/simple_spec.js",
     "avoid-posttest": "npm stop"
   },
   "dependencies": {
