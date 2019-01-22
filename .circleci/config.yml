@@ -45,6 +45,8 @@ jobs:
   run_tests:
     <<: *defaults
     parallelism: 2
+    environment:
+      PERCY_PARALLEL_TOTAL: -1
     steps:
       - attach_workspace:
           at: .
