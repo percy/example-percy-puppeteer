@@ -1,6 +1,6 @@
 const should = require('chai').should()
 const puppeteer = require('puppeteer')
-const { percySnapshot } = require('@percy/puppeteer')
+// const { percySnapshot } = require('@percy/puppeteer')
 
 const TEST_URL = "http://localhost:8000"
 
@@ -25,7 +25,7 @@ describe('Todos', function() {
     await page.keyboard.press('Enter')
     const todoCount = await page.evaluate(() => document.querySelectorAll('.todo-list li').length)
     todoCount.should.eq(1)
-    await percySnapshot(page, 'Snapshot with new todo')
+    // await percySnapshot(page, 'Snapshot with new todo')
   })
 
   it('Lets you check off a todo', async function() {
@@ -39,6 +39,6 @@ describe('Todos', function() {
     await page.click('input.toggle')
     itemsLeft = await page.evaluate(() => document.querySelector('.todo-count').textContent)
     itemsLeft.should.eq('0 items left')
-    await percySnapshot(page, this.test.fullTitle(), {widths: [768, 992, 1200]})
+    // await percySnapshot(page, this.test.fullTitle(), {widths: [768, 992, 1200]})
   })
 })

@@ -4,7 +4,7 @@
     "start": "http-server . -p 8000 &",
     "stop": "pkill -f http-server",
     "pretest": "npm start",
-    "test": "percy exec -- mocha tests/todo_$(echo $CIRCLE_NODE_INDEX)_spec.js",
+    "test": "mocha tests/todo_$(echo $CIRCLE_NODE_INDEX)_spec.js",
     "posttest": "npm stop"
   },
   "dependencies": {
@@ -12,7 +12,6 @@
     "todomvc-common": "^1.0.2"
   },
   "devDependencies": {
-    "@percy/puppeteer": "^1.0.1",
     "chai": "^4.2.0",
     "http-server": "^0.11.1",
     "mocha": "^5.2.0",
