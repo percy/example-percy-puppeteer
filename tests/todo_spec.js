@@ -4,7 +4,7 @@ const { percySnapshot } = require('@percy/puppeteer')
 
 const TEST_URL = "http://localhost:8000"
 
-describe('TodoMVC', function() {
+describe('Todos', function() {
 
   let browser = null
   let page = null
@@ -20,19 +20,6 @@ describe('TodoMVC', function() {
   afterEach(function() {
     // Close the Puppeteer browser instance.
     browser.close()
-  })
-
-  it('Loads the app', async function() {
-    await page.goto(TEST_URL)
-    const mainContainer = await page.$('section.todoapp')
-    should.exist(mainContainer)
-    await percySnapshot(page, this.test.fullTitle())
-  })
-
-  it('With no todos, hides main section', async function() {
-    await page.goto(TEST_URL)
-    const hiddenMainSection = await page.$(".main[style*='display:none']")
-    should.exist(hiddenMainSection)
   })
 
   it('Accepts a new todo', async function() {
