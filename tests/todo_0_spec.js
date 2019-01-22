@@ -1,6 +1,6 @@
 const should = require('chai').should()
 const puppeteer = require('puppeteer')
-// const { percySnapshot } = require('@percy/puppeteer')
+const { percySnapshot } = require('@percy/puppeteer')
 
 const TEST_URL = "http://localhost:8000"
 
@@ -23,6 +23,6 @@ describe('Index', function() {
     await page.goto(TEST_URL)
     const mainContainer = await page.$('section.todoapp')
     should.exist(mainContainer)
-    // await percySnapshot(page, this.test.fullTitle())
+    await percySnapshot(page, this.test.fullTitle())
   })
 })
