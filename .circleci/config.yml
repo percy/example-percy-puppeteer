@@ -19,6 +19,8 @@ jobs:
   install_dependencies:
     <<: *defaults
     steps:
+      - attach_workspace:
+          at: .
       - restore_cache:
           keys:
             - v1-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
@@ -31,11 +33,17 @@ jobs:
           key: v1-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - ./node_modules
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
 
   run_tests:
     <<: *defaults
     parallelism: 2
     steps:
+      - attach_workspace:
+          at: .
       - run: echo 'export PATH=~/example-percy-puppeteer/node_modules/.bin:$PATH' >> $BASH_ENV
       - run:
           name: Run Tests
