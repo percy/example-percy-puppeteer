@@ -12,7 +12,7 @@ describe('Todos', function() {
     browser = await puppeteer.launch({
       headless: true,
       timeout: 10000,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
     })
     page = await browser.newPage()
   })
