@@ -109,7 +109,7 @@
     sinon "7.1.1"
     winston "^2.0.0"
 
-"@percy/puppeteer@^1.0.0-beta.3":
+"@percy/puppeteer@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@percy/puppeteer/-/puppeteer-1.0.1.tgz#c67ce062ed95be45202cc9825ba2ed35e8bc2f33"
   integrity sha512-1a9//QUIN+WNgO7SlDoycisyT78XbF4mZRhMMDQtcAmZMMTeEQgV6jPI0QwvNPMJvEykrkHy/dyUsaLJ2/8LKw==
