@@ -24,6 +24,6 @@ describe('Index', function() {
     const mainContainer = await page.$('section.todoapp')
     should.exist(mainContainer)
 
-    percySnapshot(page, this.test.fullTitle())
+    await percySnapshot(page, this.test.fullTitle())
   })
 })

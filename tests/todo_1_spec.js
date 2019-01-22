@@ -26,7 +26,7 @@ describe('Todos', function() {
     const todoCount = await page.evaluate(() => document.querySelectorAll('.todo-list li').length)
     todoCount.should.eq(1)
 
-    percySnapshot(page, this.test.fullTitle())
+    await percySnapshot(page, this.test.fullTitle())
   })
 
   it('Lets you check off a todo', async function() {
@@ -41,6 +41,6 @@ describe('Todos', function() {
     itemsLeft = await page.evaluate(() => document.querySelector('.todo-count').textContent)
     itemsLeft.should.eq('0 items left')
 
-    percySnapshot(page, this.test.fullTitle())
+    await percySnapshot(page, this.test.fullTitle())
   })
 })
