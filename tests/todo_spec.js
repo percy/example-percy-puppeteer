@@ -2,17 +2,19 @@ const should = require('chai').should()
 const puppeteer = require('puppeteer')
 const { percySnapshot } = require('@percy/puppeteer')
 
-const TEST_URL = "http://todomvc.com/examples/vanillajs/"
+const TEST_URL = "http://localhost:8000"
 
 describe('Todos', function() {
 
   let browser = null
   let page = null
+
   beforeEach(async function() {
     // Create a new Puppeteer browser instace for each test case
     browser = await puppeteer.launch({
       headless: true,
-      timeout: 10000
+      timeout: 10000,
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
     })
     page = await browser.newPage()
   })
