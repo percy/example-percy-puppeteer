@@ -6,7 +6,8 @@ describe('Index', function() {
     console.log('1')
     browser = await puppeteer.launch({
       headless: true,
-      timeout: 10000
+      timeout: 10000,
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
     })
     console.log('2')
     page = await browser.newPage()
