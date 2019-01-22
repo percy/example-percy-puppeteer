@@ -51,7 +51,7 @@ jobs:
       - run: echo 'export PATH=~/example-percy-puppeteer/node_modules/.bin:$PATH' >> $BASH_ENV
       - run:
           name: Run Tests
-          command: yarn run test:parallel:${CIRCLE_NODE_INDEX}
+          command: yarn test
 
 workflows:
   test_and_deploy:
