@@ -6,6 +6,10 @@ defaults: &defaults
   working_directory: ~/example-percy-puppeteer
 
 version: 2.1
+
+orbs:
+  percy: percy/agent@volatile
+
 jobs:
   checkout_code:
     <<: *defaults
@@ -40,6 +44,8 @@ jobs:
 
   run_tests:
     <<: *defaults
+    environment:
+      PERCY_PARALLEL_TOTAL: -1
     parallelism: 2
     steps:
       - attach_workspace:
@@ -59,4 +65,7 @@ workflows:
       - run_tests:
           requires:
             - install_dependencies
+      - percy/finalize_all:
+          requires:
+            - run_tests
 
