@@ -1,13 +1,9 @@
-# .circleci/config.yml
 defaults: &defaults
   docker:
     - image: circleci/node:8-browsers
       environment:
         JOBS: 2
   working_directory: ~/example-percy-puppeteer
-
-orbs:
-  percy: percy/agent@volatile
 
 version: 2.1
 jobs:
@@ -45,8 +41,6 @@ jobs:
   run_tests:
     <<: *defaults
     parallelism: 2
-    environment:
-      PERCY_PARALLEL_TOTAL: -1
     steps:
       - attach_workspace:
           at: .
@@ -65,6 +59,3 @@ workflows:
       - run_tests:
           requires:
             - install_dependencies
-      - percy/finalize_all:
-          requires:
-            - run_tests
