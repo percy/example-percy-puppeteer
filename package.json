@@ -4,7 +4,7 @@
     "start": "http-server . -p 8000 &",
     "stop": "pkill -f http-server",
     "pretest": "npm start",
-    "test": "percy exec -- mocha tests/todo_$(echo $CIRCLE_NODE_INDEX)_spec.js",
+    "test": "LOG_LEVEL=debug percy exec -- mocha tests/todo_$(echo $CIRCLE_NODE_INDEX)_spec.js",
     "posttest": "npm stop"
   },
   "dependencies": {
