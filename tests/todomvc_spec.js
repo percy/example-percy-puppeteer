@@ -13,7 +13,7 @@ describe('TodoMVC', function() {
     browser = await puppeteer.launch({
       headless: true,
       timeout: 10000,
-      args: [ '--no-sandbox', '--disable-setuid-sandbox' ]
+      args: [ '--single-process' ]
     })
     page = await browser.newPage()
   })
