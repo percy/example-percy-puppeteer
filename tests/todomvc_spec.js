@@ -12,7 +12,8 @@ describe('TodoMVC', function() {
     // Create a new Puppeteer browser instace for each test case
     browser = await puppeteer.launch({
       headless: true,
-      timeout: 10000
+      timeout: 10000,
+      args: [ '--single-process' ]
     })
     page = await browser.newPage()
   })
