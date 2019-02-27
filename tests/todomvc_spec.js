@@ -1,6 +1,9 @@
 const should = require('chai').should()
 const puppeteer = require('puppeteer')
 const { percySnapshot } = require('@percy/puppeteer')
+const platform = require("os").platform()
+// We need to change the args passed to puppeteer based on the platform they're using
+const puppeteerArgs = /^win/.test(platform) ? [] : [ '--single-process' ]
 
 const TEST_URL = "http://localhost:8000"
 
@@ -13,7 +16,7 @@ describe('TodoMVC', function() {
     browser = await puppeteer.launch({
       headless: true,
       timeout: 10000,
-      args: [ '--single-process' ]
+      args: puppeteerArgs
     })
     page = await browser.newPage()
   })
