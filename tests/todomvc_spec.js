@@ -62,4 +62,24 @@ describe('TodoMVC', function() {
     itemsLeft.should.eq('0 items left')
     await percySnapshot(page, this.test.fullTitle(), {widths: [768, 992, 1200]})
   })
+
+  it('Demonstrates scoping snapshot to a selector', async function() {
+    // Helper to scope a page to a selector
+    async function scopePage(page, selector) {
+      await page.evaluate(function(selector) {
+        let scopedContainer = document.querySelector(selector);
+        document.querySelector('body').innerHTML = scopedContainer.outerHTML
+      }, selector)
+    }
+
+    await page.goto(TEST_URL)
+
+    // Enter a todo, so that there is a todo list.
+    await page.type('.new-todo', 'New fancy todo')
+    await page.keyboard.press('Enter')
+
+    // Scope the page to just the todo list and snapshot
+    await scopePage(page, '.main')
+    await percySnapshot(page, '.todo-list scoped snapshot')
+  })
 })
