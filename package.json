@@ -1,4 +1,5 @@
 {
+  "name": "test",
   "private": true,
   "scripts": {
     "test": "percy exec -- node run-tests.js"
