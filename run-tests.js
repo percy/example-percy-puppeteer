@@ -19,7 +19,10 @@ const tests = spawn(cmd, ['tests'], {
   windowsVerbatimArguments: true,
 });
 
-tests.on('close', () => {
-  console.log(`Tests finished! Closing server http://localhost:${port}`);
+tests.on('close', (code) => {
+  console.log(`Tests finished with exit code ${code}.`);
+  process.exitCode = code;
+
+  console.log(`Closing server http://localhost:${port}`);
   server.close();
 });
