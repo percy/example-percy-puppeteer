@@ -21,7 +21,3 @@ steps:
   displayName: 'npm install and test'
   env:
     PERCY_TOKEN: $(PERCY_TOKEN)
-
-- script: |
-    env
-  displayName: 'env'
