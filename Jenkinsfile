@@ -4,7 +4,10 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'env'
+                parallel (
+                    phase1: { sh 'env' },
+                    phase2: { sh 'env' }
+                )
             }
         }
     }
