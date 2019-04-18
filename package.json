@@ -13,6 +13,6 @@
     "http-server": "^0.11.1",
     "mocha": "^6.1.3",
     "puppeteer": "^1.14.0",
-    "percy-client": "percy/percy-js#9080a0b6c3fdef511d0b09816eeaafab9dea35e7"
+    "percy-client": "percy/percy-js#7fdd55ed70de71e185a72741ac2afaa61d531f64"
   }
 }
