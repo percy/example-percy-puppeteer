@@ -10,6 +10,7 @@ action "show-env" {
 
 action "cat-event" {
   uses = "actions/action-builder/shell@master"
-  runs = "cat $(GITHUB_EVENT_PATH)"
+  runs = "cat"
   needs = ["show-env"]
+  args = "$(GITHUB_EVENT_PATH)"
 }
