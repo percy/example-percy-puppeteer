@@ -4,12 +4,10 @@ workflow "New workflow" {
 }
 
 action "show-env" {
-  uses = "bash"
   runs = "env"
 }
 
 action "cat-event" {
-  uses = "bash"
   runs = "cat $(GITHUB_EVENT_PATH)"
   needs = ["env"]
 }
