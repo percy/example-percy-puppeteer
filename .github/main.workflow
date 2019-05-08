@@ -11,5 +11,5 @@ action "show-env" {
 action "cat-event" {
   uses = "actions/action-builder/shell@master"
   runs = "cat $(GITHUB_EVENT_PATH)"
-  needs = ["env"]
+  needs = ["show-env"]
 }
