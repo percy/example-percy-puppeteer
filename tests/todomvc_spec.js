@@ -1,16 +1,27 @@
+const httpServer = require('http-server');
 const should = require('chai').should()
 const puppeteer = require('puppeteer')
 const { percySnapshot } = require('@percy/puppeteer')
 const platform = require("os").platform()
 // We need to change the args passed to puppeteer based on the platform they're using
 const puppeteerArgs = /^win/.test(platform) ? [] : [ '--single-process' ]
-
-const TEST_URL = "http://localhost:8000"
+const PORT = process.env.PORT_NUMBER || 8000;
+const TEST_URL = `http://localhost:${PORT}`
 
 describe('TodoMVC', function() {
+  let page
+  let server
+  let browser
 
-  let browser = null
-  let page = null
+  before(() => {
+    server = httpServer.createServer({ root: `${__dirname}/..`})
+    server.listen(PORT)
+  });
+
+  after(() => {
+    server.close()
+  });
+
   beforeEach(async function() {
     // Create a new Puppeteer browser instace for each test case
     browser = await puppeteer.launch({
