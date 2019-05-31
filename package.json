@@ -1,14 +1,14 @@
 {
   "private": true,
   "scripts": {
-    "test": "percy exec -- node run-tests.js"
+    "test": "percy exec -- mocha tests/"
   },
   "dependencies": {
     "todomvc-app-css": "^2.2.0",
     "todomvc-common": "^1.0.2"
   },
   "devDependencies": {
-    "@percy/puppeteer": "^1.0.7",
+    "@percy/puppeteer": "^1.0.8",
     "chai": "^4.2.0",
     "http-server": "^0.11.1",
     "mocha": "^6.1.3",
