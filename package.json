@@ -10,7 +10,7 @@
   "devDependencies": {
     "@percy/puppeteer": "^1.0.8",
     "chai": "^4.2.0",
-    "http-server": "^0.11.1",
+    "http-server": "^0.12.0",
     "mocha": "^6.2.2",
     "puppeteer": "^2.0.0"
   }
