@@ -12,6 +12,6 @@
     "chai": "^4.2.0",
     "http-server": "^0.12.1",
     "mocha": "^7.0.1",
-    "puppeteer": "^2.0.0"
+    "puppeteer": "^2.1.0"
   }
 }
