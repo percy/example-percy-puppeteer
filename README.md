@@ -8,7 +8,7 @@ app, forked at commit
 [c78ae12a1834a11da6236c64a0c0fb06b20b7c51](https://github.com/tastejs/todomvc/tree/c78ae12a1834a11da6236c64a0c0fb06b20b7c51).
 a
 To install the dependencies, compile and run the Todo app:
-
+d
 ```bash
 $ npm install
 $ open index.html
