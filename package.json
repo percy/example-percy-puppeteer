@@ -11,7 +11,7 @@
     "@percy/puppeteer": "^1.1.0",
     "chai": "^4.2.0",
     "http-server": "^0.12.3",
-    "mocha": "^7.1.1",
+    "mocha": "^7.1.2",
     "puppeteer": "^2.1.1"
   }
 }
