@@ -1,7 +1,7 @@
 const httpServer = require('http-server');
 const should = require('chai').should();
 const puppeteer = require('puppeteer');
-const { percySnapshot } = require('@percy/puppeteer');
+const percySnapshot = require('@percy/puppeteer');
 const platform = require('os').platform();
 // We need to change the args passed to puppeteer based on the platform they're using
 const puppeteerArgs = /^win/.test(platform) ? [] : ['--single-process'];

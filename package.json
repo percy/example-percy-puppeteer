@@ -8,8 +8,8 @@
     "todomvc-common": "^1.0.2"
   },
   "devDependencies": {
-    "@percy/puppeteer": "^1.1.0",
-    "chai": "^4.3.0",
+    "@percy/cli": "^1.0.0-beta.36",
+    "@percy/puppeteer": "^2.0.0-beta.3",
     "http-server": "^0.12.3",
     "mocha": "^8.3.0",
     "puppeteer": "^8.0.0"
