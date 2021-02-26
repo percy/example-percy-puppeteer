@@ -73,7 +73,7 @@
 	 * @param {number} id An optional param to enter an ID of an item to update
 	 */
 	Store.prototype.save = function (updateData, callback, id) {
-		var todos = JSON.parse(localStorage.getItem(this._dbName));
+		var todos = JSON.parse(localStorage.getItem(this._dbName)) || [];
 
 		callback = callback || function() {};
 

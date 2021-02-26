@@ -4,6 +4,7 @@
     "test": "percy exec -- mocha tests/ --exit"
   },
   "dependencies": {
+    "expect": "^26.6.2",
     "todomvc-app-css": "^2.3.0",
     "todomvc-common": "^1.0.2"
   },
