@@ -4,12 +4,12 @@
     "test": "percy exec -- mocha tests/ --exit"
   },
   "dependencies": {
-    "todomvc-app-css": "^2.3.0",
-    "todomvc-common": "^1.0.2"
+    "expect": "^26.6.2",
+    "todomvc-app-css": "^2.3.0"
   },
   "devDependencies": {
-    "@percy/puppeteer": "^1.1.0",
-    "chai": "^4.3.0",
+    "@percy/cli": "^1.0.0-beta.39",
+    "@percy/puppeteer": "^2.0.0-beta.3",
     "http-server": "^0.12.3",
     "mocha": "^8.3.0",
     "puppeteer": "^8.0.0"
