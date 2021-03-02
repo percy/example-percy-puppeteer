@@ -83,7 +83,7 @@ add a `<strong>` tag to the "Clear completed" button on line 33. After the chang
 like this:
 
 ``` html
-<button class="clear-completed"><strong>Clear completed</strong></button>
+<button class="clear-completed bold">Clear completed</button>
 ```
 
 ### Step 6
