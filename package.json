@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@percy/cli": "^1.0.0-beta.39",
-    "@percy/puppeteer": "^2.0.0-beta.3",
+    "@percy/puppeteer": "^2.0.0",
     "http-server": "^0.12.3",
     "mocha": "^8.3.0",
     "puppeteer": "^8.0.0"
