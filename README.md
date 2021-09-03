@@ -22,7 +22,7 @@ npm](https://nodejs.org/en/download/) and
 Clone the example application and install dependencies:
 
 ```bash
-$ git clone git@github.com:percy/example-percy-puppeteer.git
+$ git clone https://github.com/percy/example-percy-puppeteer.git
 $ cd example-percy-puppeteer
 $ npm install
 ```
