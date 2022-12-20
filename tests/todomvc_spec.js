@@ -77,3 +77,4 @@ describe('TodoMVC', function () {
     await percySnapshot(page, this.test.fullTitle(), { widths: [768, 992, 1200] });
   });
 });
+//
