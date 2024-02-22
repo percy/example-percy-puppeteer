@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "expect": "^27.5.1",
-    "todomvc-app-css": "^2.4.2"
+    "todomvc-app-css": "^2.4.3"
   },
   "devDependencies": {
     "@percy/cli": "^1.12.0",
