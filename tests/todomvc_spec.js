@@ -5,7 +5,7 @@ const percySnapshot = require('@percy/puppeteer');
 
 const platform = require('os').platform();
 // We need to change the args passed to puppeteer based on the platform they're using
-const puppeteerArgs = /^win/.test(platform) ? [] : ['--single-process'];
+const puppeteerArgs = /^win/.test(platform) ? ['--no-sandbox'] : ['--single-process'];
 const PORT = process.env.PORT_NUMBER || 8000;
 const TEST_URL = `http://localhost:${PORT}`;
 
