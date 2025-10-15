@@ -1,4 +1,4 @@
-const expect = require('expect');
+const expect = require('expect').default;
 const puppeteer = require('puppeteer');
 const httpServer = require('http-server');
 const percySnapshot = require('@percy/puppeteer');
