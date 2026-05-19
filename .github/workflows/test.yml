@@ -1,7 +1,11 @@
 name: Tests
+
+# PER-8195: explicitly use `pull_request` only. `pull_request_target` is
+# forbidden — it checks out attacker-controlled code with full secret access.
 on: [push, pull_request]
+
 jobs:
-  build:
+  basic:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -22,3 +26,46 @@ jobs:
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
 
+  advanced:
+    # PER-8195 advanced example. Runs in --testing mode so PR builds (including
+    # forks and Dependabot) don't require a real PERCY_TOKEN. Matrix-row
+    # assertions hit /test/requests, not /test/logs (--testing silences logs).
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: advanced
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install jq + yq
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq jq
+          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
+      - name: Install advanced/ dependencies
+        run: npm install
+      - name: Start Percy CLI (background, --testing mode)
+        env:
+          PERCY_TOKEN: fake_token
+        run: |
+          npx --no-install percy exec:start --testing &
+          for i in {1..30}; do
+            if curl -fsS http://localhost:5338/test/requests >/dev/null 2>&1; then
+              echo "CLI ready"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "CLI did not become ready in 30s" >&2
+          exit 1
+      - name: Run mocha advanced tests
+        run: npx --no-install mocha tests/ --exit
+      - name: Assert matrix-row coverage via /test/requests
+        run: ../../scripts/assert-advanced-snapshots.sh ./matrix.yml
+      - name: Stop Percy CLI
+        if: always()
+        run: npx --no-install percy exec:stop || true

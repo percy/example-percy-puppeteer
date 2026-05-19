@@ -1,0 +1,86 @@
+# PER-8195 — canonical per-SDK matrix-row mapping for example-percy-puppeteer.
+# This is the machine-readable source of truth that the docs-site grid and the
+# repo's README table are generated from.
+
+sdk: puppeteer
+package: '@percy/puppeteer'
+language: javascript
+sdk_min_version: '2.0.0'
+cli_min_version: '1.31.0'
+
+# Row states: covered | n_a | planned | deprecated
+# 'n_a' rows MUST include a `reason`.
+rows:
+  - id: widths
+    state: covered
+    test: 'TodoMVC Advanced > exercises widths'
+  - id: percy_css
+    state: covered
+    test: 'TodoMVC Advanced > exercises percyCSS'
+  - id: min_height
+    state: covered
+    test: 'TodoMVC Advanced > exercises minHeight'
+  - id: enable_javascript
+    state: covered
+    test: 'TodoMVC Advanced > exercises enableJavaScript'
+  - id: scope
+    state: covered
+    test: 'TodoMVC Advanced > exercises scope'
+  - id: discovery
+    state: covered
+    test: 'TodoMVC Advanced > exercises discovery options'
+  - id: dom_transformation
+    state: covered
+    test: 'TodoMVC Advanced > exercises domTransformation'
+  - id: responsive_snapshot_capture
+    state: covered
+    test: 'TodoMVC Advanced > exercises responsiveSnapshotCapture'
+  - id: labels
+    state: covered
+    test: 'TodoMVC Advanced > exercises labels'
+  - id: test_case
+    state: covered
+    test: 'TodoMVC Advanced > exercises testCase'
+  - id: device_pixel_ratio
+    state: covered
+    test: 'TodoMVC Advanced > exercises devicePixelRatio'
+  - id: regions
+    state: covered
+    test: 'TodoMVC Advanced > exercises regions'
+  - id: readiness_preset
+    state: covered
+    test: 'TodoMVC Advanced > exercises readiness preset'
+  - id: browsers
+    state: covered
+    test: 'TodoMVC Advanced > exercises browsers override'
+
+  # Configured via .percy.yml, not per-snapshot. Asserted by global build config.
+  - id: env_percy_server_address
+    state: covered
+    test: 'CI: advanced job sets PERCY_SERVER_ADDRESS via env'
+  - id: percy_yml_global_config
+    state: covered
+    test: 'global config consumed via .percy.yml'
+
+  # Rows not yet covered in Phase 0 — planned for later phases.
+  - id: disable_shadow_dom
+    state: planned
+  - id: enable_layout
+    state: planned
+  - id: reshuffle_invalid_tags
+    state: planned
+  - id: pseudo_class_enabled_elements
+    state: planned
+  - id: scope_options_scroll
+    state: planned
+  - id: cli_enable_javascript
+    state: planned
+  - id: sync
+    state: planned
+
+  # Puppeteer-specific helpers.
+  - id: browser_wait_for_ready
+    state: planned
+  - id: environment_info_reporting
+    state: covered
+    test: 'automatic via @percy/puppeteer client info'

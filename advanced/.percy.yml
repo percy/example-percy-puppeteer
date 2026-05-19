@@ -1,0 +1,31 @@
+# PER-8195 — advanced example global config. Demonstrates Percy CLI snapshot
+# config that the puppeteer SDK consumes as defaults across every snapshot.
+# Per-snapshot options in tests/todomvc_advanced.spec.js override these.
+
+version: 2
+
+snapshot:
+  widths: [375, 1280]
+  min-height: 1024
+  percy-css: |
+    .new-todo::placeholder { color: #999 !important; }
+
+  # Readiness controls when Percy decides the page is ready to capture.
+  readiness:
+    preset: balanced
+    stability-window-ms: 200
+    js-idle-window-ms: 200
+    network-idle-window-ms: 500
+    timeout-ms: 8000
+    not-present-selectors:
+      - '.loading-spinner'
+
+discovery:
+  allowed-hostnames:
+    - localhost
+  network-idle-timeout: 500
+
+# Default browsers reported with each build. Override per-snapshot via
+# `browsers` option.
+browsers:
+  - chrome
