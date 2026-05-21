@@ -11,7 +11,7 @@
     "todomvc-app-css": "^2.4.3"
   },
   "devDependencies": {
-    "@percy/cli": "1.31.3",
+    "@percy/cli": "^1.31.13",
     "@percy/puppeteer": "2.0.2",
     "http-server": "^14.1.1",
     "mocha": "^11.7.4",

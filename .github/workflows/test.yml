@@ -28,8 +28,11 @@ jobs:
 
   advanced:
     # PER-8195 advanced example. Runs in --testing mode so PR builds (including
-    # forks and Dependabot) don't require a real PERCY_TOKEN. Matrix-row
-    # assertions hit /test/requests, not /test/logs (--testing silences logs).
+    # forks and Dependabot) don't require a real PERCY_TOKEN. The `--testing`
+    # flag is only valid on `percy exec` (not `exec:start`); it exposes
+    # /test/requests for matrix-row assertion. We capture /test/requests to a
+    # file inside the exec wrapper because percy exec tears down the local
+    # server on inner-command exit.
     runs-on: ubuntu-latest
     timeout-minutes: 10
     defaults:
@@ -48,24 +51,24 @@ jobs:
           sudo chmod +x /usr/local/bin/yq
       - name: Install advanced/ dependencies
         run: npm ci
-      - name: Start Percy CLI (background, --testing mode)
+      - name: Fetch shared advanced-snapshot assertion helper
+        # TODO(PER-8195 D8): pin to a tagged commit once percy-public-repos-parent
+        # publishes the scripts/ dir to a stable URL or to an npm package.
+        run: |
+          curl -fsSL -o /tmp/assert-advanced-snapshots.sh \
+            https://raw.githubusercontent.com/percy/percy-public-repos-parent/main/scripts/assert-advanced-snapshots.sh
+          chmod +x /tmp/assert-advanced-snapshots.sh
+      - name: Run mocha advanced tests (--testing) + capture /test/requests
         env:
           PERCY_TOKEN: fake_token
         run: |
-          npx --no-install percy exec:start --testing &
-          for i in {1..30}; do
-            if curl -fsS http://localhost:5338/test/requests >/dev/null 2>&1; then
-              echo "CLI ready"
-              exit 0
-            fi
-            sleep 1
-          done
-          echo "CLI did not become ready in 30s" >&2
-          exit 1
-      - name: Run mocha advanced tests
-        run: npx --no-install mocha tests/ --exit
-      - name: Assert matrix-row coverage via /test/requests
-        run: ../../scripts/assert-advanced-snapshots.sh ./matrix.yml
-      - name: Stop Percy CLI
-        if: always()
-        run: npx --no-install percy exec:stop || true
+          npx --no-install percy exec --testing -- bash -c '
+            npx --no-install mocha tests/ --exit
+            ec=$?
+            curl -fsS http://localhost:5338/test/requests > advanced-requests.json || true
+            exit $ec
+          '
+      - name: Assert matrix-row coverage
+        env:
+          PERCY_REQUESTS_FILE: ${{ github.workspace }}/advanced/advanced-requests.json
+        run: /tmp/assert-advanced-snapshots.sh ./matrix.yml
