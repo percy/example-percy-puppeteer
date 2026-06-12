@@ -1,0 +1,20 @@
+{
+  "name": "example-percy-puppeteer-advanced",
+  "private": true,
+  "description": "Advanced Percy + Puppeteer example. Exercises the full applicable SDK feature surface. See README.md for the matrix-row coverage.",
+  "scripts": {
+    "test:advanced": "percy exec -- mocha tests/ --exit",
+    "test:advanced:ci": "PERCY_TOKEN=fake_token percy exec --testing -- mocha tests/ --exit"
+  },
+  "dependencies": {
+    "expect": "^30.2.0",
+    "todomvc-app-css": "^2.4.3"
+  },
+  "devDependencies": {
+    "@percy/cli": "^1.31.13",
+    "@percy/puppeteer": "2.0.2",
+    "http-server": "^14.1.1",
+    "mocha": "^11.7.4",
+    "puppeteer": "^24.23.0"
+  }
+}
