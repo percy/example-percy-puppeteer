@@ -6,3 +6,7 @@ updates:
     interval: monthly
     time: "03:00"
     timezone: US/Central
+  # Wait 7 days before proposing updates to newly published versions, so a
+  # compromised/unstable release has time to be caught and yanked.
+  cooldown:
+    default-days: 7
