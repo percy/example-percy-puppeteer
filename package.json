@@ -11,7 +11,7 @@
     "@percy/cli": "^1.31.3",
     "@percy/puppeteer": "^2.0.2",
     "http-server": "^14.1.1",
-    "mocha": "^11.7.4",
+    "mocha": "^11.8.0",
     "puppeteer": "^24.23.0"
   }
 }
