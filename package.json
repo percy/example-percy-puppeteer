@@ -12,6 +12,6 @@
     "@percy/puppeteer": "^2.0.2",
     "http-server": "^14.1.1",
     "mocha": "^11.7.4",
-    "puppeteer": "^24.23.0"
+    "puppeteer": "^25.7.0"
   }
 }
